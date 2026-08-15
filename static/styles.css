@@ -1,0 +1,6 @@
+
+body, button {
+	font-family: "comic sans ms";
+}
+.hidden {display: none;}
+.visible {display: block;}
