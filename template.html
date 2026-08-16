@@ -1,22 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<!-- Creepster font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Creepster&family=Eater&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="static/styles.css">
+
 </head>
 
 <body>
 
-<h1>monster generator</h1>
-
-<p> 
-	<button type="button" id="pickMonster">pick new monster</button> 
-	name: <span id="monsterLabel"></span>
+<p>
+	<b>ghosts of monsDRAWsity past...</b>
+	<button type="button" id="pickMonster">commune!</button> 
+	(<span id="numMonsters"></span> available)
 </p>
 
+<!-- DEV USE -->
+<!-- <p>name: <span id="monsterLabel"></span></p> -->
+
 <div id='imgsContainer'>
-	<img id="block1" class="monsterImg hidden" src="static/images/template/monster_01.jpg" width=300>
-	<img id="block2" class="monsterImg hidden" src="static/images/template/monster_02.jpg" width=300>
-	<img id="block3" class="monsterImg hidden" src="static/images/template/monster_03.jpg" height=300>
 </div>
 
 </body>

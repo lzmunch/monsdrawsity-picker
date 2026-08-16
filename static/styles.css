@@ -3,7 +3,7 @@ body, button {
 /*	font-family: "comic sans ms";*/
 /*	font-family: "Creepster";*/
 	font-family: "Eater";
-/*	font-size: 5vh;*/
+	font-size: 24px;
 	text-align: center;
 }
 .hidden {display: none;}
