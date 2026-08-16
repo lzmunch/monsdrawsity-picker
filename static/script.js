@@ -43,19 +43,18 @@ document.getElementById('numMonsters').innerHTML = numImgs;
 // swap monster img on click
 document.getElementById("pickMonster").onclick = function () { 
 	// hide old img
-	// TODO save idx to make sure we get a new one
-	let visibleElems = document.getElementsByClassName('visible');
-	console.log(visibleElems);
 	// should be able to assume there is only 1 visible elem
 	// at any given time but for robustness, this code also handles
 	// the case where multiple are visible for some reason
+	let visibleElems = document.getElementsByClassName('visible');
+	console.log('visible elems: ' + visibleElems);
 	let prevIndexes = [];
 	for (let i=0; i < visibleElems.length; i++) {
 		let visElem = visibleElems[i];
 		setElemVisible(visElem, false);
 		prevIndexes.push(indexFromId(visElem.id));
 	}
-	console.log(prevIndexes);
+	console.log('previous indexes: ' + prevIndexes);
 
 	// pick a new img and make it visible
 	let imgIdx = Math.floor(Math.random() * numImgs);
@@ -68,7 +67,7 @@ document.getElementById("pickMonster").onclick = function () {
 	 
 
 	let elemId = MONSTER_ID_PREFIX + zeroFill2(imgIdx);
-	console.log('looking for elem with id:' + elemId);
+	console.log('looking for elem with id: ' + elemId);
 	let newImgElem = document.getElementById(elemId);
 	setElemVisible(newImgElem, true);
 

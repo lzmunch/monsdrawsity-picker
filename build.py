@@ -14,6 +14,7 @@ IMG_ELEM_TEMPLATE = '<img id="{eid}" class="{m_class} hidden" src="{img_path}" {
 # paths
 PROJECT_ROOT = Path(__file__).parent
 IMAGES_REL_DIR = 'static/images/monsters'
+# IMAGES_REL_DIR = 'static/images/monsters/placeholder'
 IMAGES_DIR = PROJECT_ROOT / IMAGES_REL_DIR
 TEMPLATE_HTML_PATH = PROJECT_ROOT / 'template.html'
 INDEX_HTML_PATH = PROJECT_ROOT / 'index.html'
