@@ -1,21 +1,14 @@
 // 4032 x 3024 
 
-/*
-requirements for python code:
-- elements have "monsterImg" class
-- hidden/visible classes are defined
-*/
+// -----------------------------------------------------------------------
+// shared config with python
+// -----------------------------------------------------------------------
+const MONSTER_ID_PREFIX = 'monster'
+const MONSTER_CLASS = 'monsterImg'
 
-
-var monsterIdPrefix = 'block'
-var monsterClass = 'monsterImg '
-
-// 36 images
-// var numImgs = 3;
-var numImgs = document.getElementsByClassName(monsterClass).length;
-console.log('monster images available: ' + numImgs)
-
-
+// -----------------------------------------------------------------------
+// Helpers
+// -----------------------------------------------------------------------
 function setElemVisible(elem, visible) {
 	if (visible) {
 		console.log('showing ', elem.id);
@@ -28,22 +21,59 @@ function setElemVisible(elem, visible) {
 	}
 }
 
+function zeroFill2(n) {
+	return ('00'+n).slice(-2);
+}
+
+function indexFromId(eid) {
+	return parseInt(eid.replace(MONSTER_ID_PREFIX, ''));
+}
+
+function arrayContains(arr, elem) {
+	return (arr.indexOf(elem) >= 0);
+}
+
+// -----------------------------------------------------------------------
+// Main
+// -----------------------------------------------------------------------
+let numImgs = document.getElementsByClassName(MONSTER_CLASS).length;
+console.log('monster images available: ' + numImgs)
+document.getElementById('numMonsters').innerHTML = numImgs;
+
 // swap monster img on click
 document.getElementById("pickMonster").onclick = function () { 
 	// hide old img
 	// TODO save idx to make sure we get a new one
-	var visibleElems = document.getElementsByClassName('visible');
+	let visibleElems = document.getElementsByClassName('visible');
 	console.log(visibleElems);
+	// should be able to assume there is only 1 visible elem
+	// at any given time but for robustness, this code also handles
+	// the case where multiple are visible for some reason
+	let prevIndexes = [];
 	for (let i=0; i < visibleElems.length; i++) {
-		setElemVisible(visibleElems[i], false);
+		let visElem = visibleElems[i];
+		setElemVisible(visElem, false);
+		prevIndexes.push(indexFromId(visElem.id));
 	}
+	console.log(prevIndexes);
 
 	// pick a new img and make it visible
-	var imgIdx = Math.floor(Math.random() * numImgs) + 1;
-	var newImgElem = document.getElementById(monsterIdPrefix + String(imgIdx));
+	let imgIdx = Math.floor(Math.random() * numImgs);
+
+	// hacky way to avoid repeats, true randomness is not important
+	if (arrayContains(prevIndexes, imgIdx)) {
+		console.log('fix repeated idx')
+		imgIdx = (imgIdx + 1) % numImgs;
+	}
+	 
+
+	let elemId = MONSTER_ID_PREFIX + zeroFill2(imgIdx);
+	console.log('looking for elem with id:' + elemId);
+	let newImgElem = document.getElementById(elemId);
 	setElemVisible(newImgElem, true);
 
+	// DEV USE
 	// display label for monster
-	var filename = newImgElem.src.replace(/^.*[\\/]/, '');
-	document.getElementById('monsterLabel').innerHTML = filename;
+	// let filename = newImgElem.src.replace(/^.*[\\/]/, '');
+	// document.getElementById('monsterLabel').innerHTML = filename;
 };
