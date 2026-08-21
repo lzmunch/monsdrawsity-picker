@@ -1,5 +1,3 @@
-// 4032 x 3024 
-
 // -----------------------------------------------------------------------
 // shared config with python
 // -----------------------------------------------------------------------
@@ -41,7 +39,7 @@ console.log('monster images available: ' + numImgs)
 document.getElementById('numMonsters').innerHTML = numImgs;
 
 // swap monster img on click
-document.getElementById("pickMonster").onclick = function () { 
+document.getElementById("pickMonster").onclick = function () {
 	// hide old img
 	// should be able to assume there is only 1 visible elem
 	// at any given time but for robustness, this code also handles
@@ -64,7 +62,7 @@ document.getElementById("pickMonster").onclick = function () {
 		console.log('fix repeated idx')
 		imgIdx = (imgIdx + 1) % numImgs;
 	}
-	 
+
 
 	let elemId = MONSTER_ID_PREFIX + zeroFill2(imgIdx);
 	console.log('looking for elem with id: ' + elemId);
