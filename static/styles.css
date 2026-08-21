@@ -1,13 +1,29 @@
 
 body, button {
-/*	font-family: "comic sans ms";*/
-/*	font-family: "Creepster";*/
 	font-family: "Eater";
 	font-size: 3vh;
 	text-align: center;
 }
-.hidden {display: none;}
-.visible {display: block;}
+
+.hidden {
+    display: none;
+}
+.visible {
+    display: block;
+}
+
+p {
+    margin: 10px;
+    background-color: lightgrey;
+    padding: 5px;
+}
+
+/* background image*/
+body {
+  background-image: url("./images/ghost-bkgd-tile.jpg");
+  background-repeat: repeat-xy;
+}
+
 
 /* make images responsive
 Source - https://stackoverflow.com/a/35345577
@@ -27,17 +43,4 @@ img {
     height: auto;
     max-width: 80%;
     max-height: 100vh;
-}
-
-/* other stuff */
-p {
-	margin: 10px;
-	background-color: lightgrey;
-	padding: 5px;
-}
-
-/* background image*/
-body {
-  background-image: url("./images/ghost-bkgd-tile.jpg");
-  background-repeat: repeat-xy;
 }

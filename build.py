@@ -1,7 +1,8 @@
 import os
 from pathlib import Path
-# 
+#
 from bs4 import BeautifulSoup
+
 
 # shared config with javascript
 MONSTER_ID_PREFIX = 'monster'
@@ -14,21 +15,22 @@ IMG_ELEM_TEMPLATE = '<img id="{eid}" class="{m_class} hidden" src="{img_path}" {
 # paths
 PROJECT_ROOT = Path(__file__).parent
 IMAGES_REL_DIR = 'static/images/monsters'
-# IMAGES_REL_DIR = 'static/images/monsters/placeholder'
 IMAGES_DIR = PROJECT_ROOT / IMAGES_REL_DIR
 TEMPLATE_HTML_PATH = PROJECT_ROOT / 'template.html'
 INDEX_HTML_PATH = PROJECT_ROOT / 'index.html'
 
-# height=300
-
 
 def generate_index_html():
+	"""Generates `index.html` from a `template.html` file.
+
+	Adds images into the div with `CONTAINER_DIV_ID` defined in `template.html`
+	"""
 
 	# --------------------------------------------------------------------
 	# get img paths
 	# --------------------------------------------------------------------
 	# [] if no file
-	img_names = next(os.walk(IMAGES_DIR), (None, None, []))[2]  
+	img_names = next(os.walk(IMAGES_DIR), (None, None, []))[2]
 	if not img_names:
 		print(f'no images found in {IMAGES_DIR}')
 		return
@@ -49,11 +51,9 @@ def generate_index_html():
 	for i, path in enumerate(img_rel_paths):
 		elem_str = IMG_ELEM_TEMPLATE.format(
 			m_class=MONSTER_CLASS,
-			eid=f'{MONSTER_ID_PREFIX}{i:02}', 
-			img_path=path, 
-			# TODO change based on orientation
-			# size_constrain='height=300'
-			size_constrain=''
+			eid=f'{MONSTER_ID_PREFIX}{i:02}',
+			img_path=path,
+			size_constrain=''  # TODO change based on orientation?
 		)
 		print(elem_str)
 		container.append(BeautifulSoup(elem_str, 'html.parser'))
